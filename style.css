@@ -1,0 +1,639 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #2c2c2c, #2c2c2c);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  padding: 30px;
+  border-radius: 12px;
+  background: rgba(40, 40, 40, 0.9);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.balance {
+  margin-bottom: 30px;
+}
+
+.balance span {
+  font-size: 1.2em;
+  color: #bbb;
+}
+
+.balance h1 {
+  font-size: 2.5em;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 5px;
+}
+
+.button {
+  flex: 1;
+  padding: 15px;
+  border: 2px solid #444;
+  background: transparent;
+  color: #ddd;
+  font-size: 1.1em;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background: #444;
+  color: white;
+}
+
+.button i {
+  margin-right: 10px;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 12px;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #333;
+  margin: -10% auto;
+  padding: 25px;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+    
+
+}
+
+.modal-content h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.modal-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.close {
+  color: #aaa;
+  font-size: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.close:hover {
+  color: #fff;
+}
+
+.crypto-option {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  background-color: #444;
+}
+
+.crypto-option:hover {
+  background: #666;
+  color: white;
+}
+
+.crypto-option img {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.crypto-option span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.assets {
+  background: #272727;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  margin-top: 20px;
+}
+
+.assets h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #fff;
+  margin-top: 2px;
+}
+
+.asset {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.asset img {
+  width: 32px;
+  height: 32px;
+  margin-right: 15px;
+}
+
+.asset-price {
+  font-size: 1.2em;
+}
+
+.asset-change {
+  margin-left: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.positive {
+  color: #4caf50;
+}
+
+.negative {
+  color: #f44336;
+}
+
+.withdraw-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.withdraw-form label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #bbb;
+}
+
+.withdraw-form input {
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #555;
+  border-radius: 6px;
+  background-color: #333;
+  color: #fff;
+  width: 200px;
+}
+
+.withdraw-form input:focus {
+  outline: none;
+  border-color: #444;
+  box-shadow: 0 0 5px rgba(68, 68, 68, 0.5);
+}
+
+.withdraw-form button {
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #555;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.withdraw-form button:hover {
+  background-color: #444;
+}
+
+.withdraw-form button:active {
+  background-color: #333;
+}
+
+.exchange-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.exchange-field {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.exchange-field label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #bbb;
+}
+
+.exchange-field select {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #555;
+  border-radius: 6px;
+  background-color: #333;
+  color: #fff;
+}
+
+.exchange-section button {
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #666;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.exchange-section button:hover {
+  background-color: #555;
+}
+
+.exchange-section button:active {
+  background-color: #444;
+}
+
+.modal h2 {
+  font-size: 20px;
+  color: #aaa;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal button {
+  background-color: #1e90ff;
+color: #fff;
+padding: 12px 20px;
+border-radius: 8px;
+font-size: 16px;
+cursor: pointer;
+border: none;
+transition: background-color 0.3s ease;
+width: 225px;
+}
+
+
+
+
+
+button:hover {
+background-color: #187bcd; /* Темнее при наведении */
+}
+
+.button i {
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+#assets-list {
+  display: flex;
+  flex-direction: column;
+  
+  background-color: #272727;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.asset {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: #2b2b2b;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.asset-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.asset-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.asset-info span {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.asset-price {
+  color: white;
+  font-size: 1em;
+  margin-right: 10px;
+}
+
+.asset-change {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.asset-change.positive {
+  color: #4caf50;
+}
+
+.asset-change.negative {
+  color: #ff4d4f;
+}
+
+
+.balance {
+  text-align: center;
+  margin-bottom: -5px;
+  padding: 6px;
+  background-color: rgb(0 0 0 / 2%);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+  .balance span {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+
+  .modal-body {
+    background-color: #2c2c2c;
+    border-radius: 12px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+
+  .modal-body h2 {
+    color: #1e90ff;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .modal-body p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  .wallet-address {
+    background-color: #3b3b3b;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+  }
+
+  .wallet-address p {
+    font-size: 16px;
+    color: #fff;
+  }
+
+  .wallet-address input {
+    background-color: #4a4a4a;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    width: calc(100% - 12px);
+    border-radius: 8px;
+    margin-right: 10px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .wallet-address button {
+    background-color: #1e90ff;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .wallet-address button:hover {
+    background-color: #1c7bce;
+  }
+
+  .wallet-address input:focus {
+    outline: none;
+    background-color: #5a5a5a;
+  }
+
+
+
+
+.custom-select {
+  position: relative;
+  width: 200px;
+  font-family: Arial, sans-serif;
+  background: #272727;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 200px;
+}
+
+.selected-option {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.selected-option .crypto-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  background-color: #272727;
+  border: 1px solid #272727;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.options.visible {
+  display: block;
+}
+
+.option {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: #272727;
+}
+
+.option .crypto-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+
+.exchange-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.exchange-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+label {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #555;
+  border-radius: 8px;
+  background-color: #444;
+  color: #fff;
+  transition: border-color 0.3s ease;
+  width: 180px;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: #ffd700;
+  width: 180px;
+}
+
+.transaction-history {
+  background: rgba(40, 40, 40, 0.8);
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  margin-top: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.transaction-history h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #fff;
+  margin-top: 2px;
+}
+
+#transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.transaction-item {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-item .transaction-date {
+  font-size: 14px;
+  color: #bbb;
+}
+
+.transaction-item .transaction-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.transaction-item .crypto-info {
+  display: flex;
+  align-items: center;
+}
+
+.transaction-item .crypto-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.transaction-item .transaction-description {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.transaction-item .transaction-amount {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.transaction-item .transaction-amount.positive {
+  color: #4caf50; /* Green for positive amounts */
+}
+
+.transaction-item .transaction-amount.negative {
+  color: #f44336; /* Red for negative amounts */
+}
+
+.transaction-item .transaction-address {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #aaa;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.arrow {
+  display: none;
+}
+

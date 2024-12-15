@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="container">
+    <div class="balance"><br><br><br>
+      <span>Баланс Кошелька</span>
+      <h1 id="total-balance">$0.00</h1>
+    </div>
+
+
+
+
+    <div class="buttons">
+      <div class="button" onclick="openTopUp()">
+        <i class="fa fa-plus-circle"></i> <br>Пополнить
+      </div>
+      <div class="button" onclick="openWithdraw()">
+        <i class="fa fa-arrow-down"></i> <br>Вывести
+      </div>
+      <div class="button" onclick="openObmen()">
+        <i class="fa fa-exchange-alt"></i> <br>Обмен 
+      </div>
+    </div>
+
+    <div class="transaction-history">
+      <h3>История Платежей</h3>
+      <div id="transaction-list">
+        
+      </div>
+    </div>
+    
+    <script>
+    const cryptoList2 = [
+      { id: "bitcoin", symbol: "BTC", name: "Bitcoin", icon: "https://cryptologos.cc/logos/bitcoin-btc-logo.png" },
+      { id: "the-open-network", symbol: "TON", name: "Toncoin", icon: "https://cryptologos.cc/logos/toncoin-ton-logo.png" },
+      { id: "ethereum", symbol: "ETH", name: "Ethereum", icon: "https://cryptologos.cc/logos/ethereum-eth-logo.png" },
+      { id: "tether", symbol: "USDT", name: "Tether", icon: "https://cryptologos.cc/logos/tether-usdt-logo.png" },
+      { id: "binancecoin", symbol: "BNB", name: "BNB", icon: "https://cryptologos.cc/logos/binance-coin-bnb-logo.png" },
+      { id: "tron", symbol: "TRX", name: "TRON", icon: "https://cryptologos.cc/logos/tron-trx-logo.png" },
+      { id: "ripple", symbol: "XRP", name: "Ripple", icon: "https://cryptologos.cc/logos/ripple-xrp-logo.png" },
+    ];
+    
+    const transactions = [
+      { date: "09 декабря 2024", description: "Пополнение счета", amount: "+50.00", type: "positive", cryptoId: "bitcoin", address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa" },
+      { date: "10 декабря 2024", description: "Вывод средств", amount: "-30.00", type: "negative", cryptoId: "ethereum", address: "0x32343B94f860124dC4fEe278FDCBD38C102D88" },
+    ];
+    
+    const transactionList = document.getElementById('transaction-list');
+    
+    function getCryptoIcon(id) {
+      const crypto = cryptoList2.find(crypto => crypto.id === id);
+      return crypto ? crypto.icon : ''; 
+    }
+    
+    transactions.forEach(transaction => {
+      const transactionItem = document.createElement('div');
+      transactionItem.classList.add('transaction-item');
+      
+      const cryptoIconUrl = getCryptoIcon(transaction.cryptoId);
+    
+      transactionItem.innerHTML = `
+        <span class="transaction-date">${transaction.date}</span>
+        <div class="transaction-details">
+          <div class="crypto-info">
+            <img src="${cryptoIconUrl}" alt="${transaction.cryptoId}" class="crypto-icon">
+            <span class="transaction-description">${transaction.description}</span>
+          </div>
+          <span class="transaction-amount ${transaction.type}">${transaction.amount}</span>
+        </div>
+        <span class="transaction-address">Адрес: ${transaction.address}</span>
+      `;
+      
+      transactionList.appendChild(transactionItem);
+    });
+    </script>
+    
+    
+    
+    <div class="assets">
+      <h3>Активы</h3>
+      <div id="assets-list"></div>
+    </div>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content animate-modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+ 
+  </div>
+</div>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
